@@ -36,7 +36,7 @@ fetch(rutaArchivoJSON)
 
             selectedVids.forEach(vid => {
                 vid.addEventListener('click', () => {
-                    let vidId = vid.getAttribute('videoID')
+                    let vidId = vid.getAttribute('id')
                     localStorage.setItem('ID', vidId)
                 })
             })

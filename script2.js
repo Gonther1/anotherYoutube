@@ -58,6 +58,7 @@ fetch(rutaArchivoJSON)
         </div> 
         `)
     }
+    
     addFirstContent()
     const addVideosSecond = async () => {
         let domElement = document.querySelector('.right-sidebar')
@@ -83,4 +84,15 @@ fetch(rutaArchivoJSON)
     console.error('Error al cargar el archivo JSON:', error);
 });  
 
+
+// function playVideo(parameter) {
+//     let iframe = document.querySelector('#mainVideo');
+//     iframe.insertAdjacentHTML('afterbegin', `
+//     <iframe class="rounded-2xl" width="100%" height="615" src="https://www.youtube.com/embed/${parameter}?si=czx-JXcyfxDxe0lv&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+//     `)
+// }
+
+// let storageItem = localStorage.getItem('ID')
+// console.log(storageItem);
+// playVideo(storageItem)
     
