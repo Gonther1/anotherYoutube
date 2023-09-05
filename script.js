@@ -20,7 +20,7 @@ fetch(rutaArchivoJSON)
         let a=0
         for (let i = 0; i < 24; i++) {
             domElement.insertAdjacentHTML('beforeend', /* html */`
-                <div class="vid-list">
+            <div class="vid-list" id="${data['contents'][i]['video']['videoId']}">
                 <a href="second.html"><img src="${data['contents'][i]['video']['thumbnails'][0]['url']}" class="thumbnail"></a>
                 <div class="flex-div">
                     <img src="${data['channelInfo']['avatar'][0]['url']}">
@@ -32,6 +32,15 @@ fetch(rutaArchivoJSON)
                 </div>
             </div>
             `)
+            const selectedVids = document.querySelectorAll(".vid-list")
+
+            selectedVids.forEach(vid => {
+                vid.addEventListener('click', () => {
+                    let vidId = vid.getAttribute('videoID')
+                    localStorage.setItem('ID', vidId)
+                })
+            })
+        
             // let targetActual=document.getElementById(`#target${i}`)
             // targetActual.addEventListener('click', async function(){
             //     let url=data['contents'][i]['video']['videoId']
