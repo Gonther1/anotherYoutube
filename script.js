@@ -41,13 +41,6 @@ fetch(rutaArchivoJSON)
                 })
             })
         
-            // let targetActual=document.getElementById(`#target${i}`)
-            // targetActual.addEventListener('click', async function(){
-            //     let url=data['contents'][i]['video']['videoId']
-            //     console.log(url)
-            // })
-
-            
         }
     }
     construirMainHead()

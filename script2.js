@@ -17,8 +17,8 @@ fetch(rutaArchivoJSON)
         let a=0
         domElement.insertAdjacentHTML('beforeend', /* html */`
         <div class="play-video">
-            <div class="video-iframe">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/E6WrPNFH7Nw?si=Q-mDEFYEAua3ZioB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div id="mainVideo" class="video-iframe">
+                
             </div>
             <div class="tags">
                 <a href="">#Coding</a>
@@ -66,10 +66,10 @@ fetch(rutaArchivoJSON)
         for (let i = 0; i < 12; i++) {
             a>=8 ? a=0 :
             domElement.insertAdjacentHTML('beforeend', /* html */`
-            <div class="side-video-list">
-                <a href="#" class="small-thumbnail"><img src="${data['contents'][i]['video']['thumbnails'][0]['url']}"></a>
+            <div class="side-video-list" id="${data['contents'][i]['video']['videoId']}">
+                <a href="second.html" class="small-thumbnail"><img src="${data['contents'][i]['video']['thumbnails'][0]['url']}"></a>
                 <div class="vid-info">
-                    <a href="#">${data['contents'][i]['video']['title']}</a>
+                    <a href="second.html">${data['contents'][i]['video']['title']}</a>
                     <p>${data['channelInfo']['title']}</p>
                     <p>${data['contents'][i]['video']['stats']['views']} Views &bull; ${data['contents'][i]['video']['publishedTimeText']}</p>
                 </div>
@@ -79,20 +79,29 @@ fetch(rutaArchivoJSON)
     }
     addVideosSecond()
 
+    const selectedVids = document.querySelectorAll(".side-video-list")
+
+    selectedVids.forEach(vid => {
+        vid.addEventListener('click', () => {
+            let vidId = vid.getAttribute('id')
+            localStorage.setItem('ID', vidId)
+        })
+    })
+
+    function playVideo(parameter) {
+        let iframe = document.querySelector('#mainVideo');
+        iframe.insertAdjacentHTML('afterbegin', `
+        <iframe class="rounded-2xl" width="100%" height="615" src="https://www.youtube.com/embed/${parameter}?si=czx-JXcyfxDxe0lv&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        `)
+    }
+
+    let storageItem = localStorage.getItem('ID')
+    playVideo(storageItem)
 })
 .catch(error => {
     console.error('Error al cargar el archivo JSON:', error);
 });  
 
 
-// function playVideo(parameter) {
-//     let iframe = document.querySelector('#mainVideo');
-//     iframe.insertAdjacentHTML('afterbegin', `
-//     <iframe class="rounded-2xl" width="100%" height="615" src="https://www.youtube.com/embed/${parameter}?si=czx-JXcyfxDxe0lv&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-//     `)
-// }
 
-// let storageItem = localStorage.getItem('ID')
-// console.log(storageItem);
-// playVideo(storageItem)
     
